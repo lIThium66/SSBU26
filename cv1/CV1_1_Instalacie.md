@@ -4,6 +4,7 @@
 
 ### Inštalácia Python
 
+
 Potrebné stiahnuť inštalačný súbor - www.python.org/downloads/
 
 <img src="data/25_python1.png" width="70%"/> 
