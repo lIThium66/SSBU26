@@ -5,6 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="efcb078d-86a2-42cc-b41d-a7e6eada9554" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/cv3/CV3_3_Dataset_Python.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cv3/CV3_3_Dataset_Python.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cv3/CV3_4_Ulohy.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cv3/CV3_4_Ulohy.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/cv4/CV4_1_Predspracovanie.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cv4/CV4_1_Predspracovanie.ipynb" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/cv4/CV4_2_Zadanie_1.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/cv4/CV4_2_Zadanie_1.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,7 +57,7 @@
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "main",
+    "git-widget-placeholder": "cv3",
     "ignore.virus.scanning.warn.message": "true",
     "last_opened_file_path": "C:/Users/admin/Desktop/Škola/4.ročník/LETO/ssbu",
     "settings.editor.selected.configurable": "editor.preferences.fonts.default"
@@ -104,5 +107,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="jupyter-line">
+          <url>file://$PROJECT_DIR$/cv4/CV4_2_Zadanie_1.ipynb</url>
+          <line>121</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
