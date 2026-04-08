@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import numpy as np
 from sklearn.datasets import load_breast_cancer
-from sklearn.preprocessing import StandardScaler, MinMaxScaler
+from sklearn.preprocessing import StandardScaler, MinMaxScaler, RobustScaler
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from typing import Tuple, List, Optional, Callable
@@ -69,11 +69,12 @@ class Dataset:
         """
         scalers = {
             'standard': StandardScaler(),
-            'normalize': MinMaxScaler()
+            'normalize': MinMaxScaler(),
+            'robust': RobustScaler()
         }
         scaler = scalers.get(scale_type)
         if not scaler:
-            raise ValueError("Invalid scale_type. Choose 'standard' or 'normalize'.")
+            raise ValueError("Invalid scale_type. Choose 'standard' or 'normalize' or 'robust'.")
         return scaler.fit_transform(X_train), scaler.transform(X_test)
 
     def visualize_feature_distribution(self, feature_index: int, scaled_data: Optional[np.ndarray] = None, title_suffix: str = ""):
@@ -113,7 +114,7 @@ class Dataset:
         """
         Determines the importance of each feature using a random forest classifier and plots the results.
         """
-        model = RandomForestClassifier(n_estimators=100, random_state=42)
+        model = RandomForestClassifier(n_estimators=100, random_state=42) #42 - stoparov sprievodca
         model.fit(self.data, self.target)
         importances = model.feature_importances_
         indices = np.argsort(importances)[::-1]
@@ -196,3 +197,39 @@ class Dataset:
         self.__generic_plot(plt.hist, scaled_feature, bins=20, color='orange', alpha=0.7,
                             title=f"After Scaling: {feature_name}", xlabel=feature_name, ylabel="Frequency",
                             figsize=(12, 6))
+
+
+#moje veci
+    def mean(self):
+        return pd.DataFrame(self.data, columns=self.feature_names).mean()
+
+    def median(self):
+        return pd.DataFrame(self.data, columns=self.feature_names).median()
+
+    def standard_dev(self):
+        return pd.DataFrame(self.data, columns=self.feature_names).std()
+
+    def calculate_statistics(self):
+        mean = self.mean()
+        median = self.median()
+        stdev = self.standard_dev()
+
+        stats_df = pd.DataFrame({'mean': mean, 'median': median, 'stdev': stdev}, index=self.feature_names)
+
+        return stats_df
+
+    def summarize_features(self, feature_names=None):
+        df = pd.DataFrame(self.data, columns=self.feature_names)
+        if feature_names is not None:
+            df = df[feature_names]
+
+        unique = df.nunique()
+        most_common = df.mode()[0]
+        freqs = {}
+        for i in df.columns:
+            freqs[i] = df[i].value_counts()[0]
+        frequency = pd.Series(freqs)
+
+        df_prop = pd.DataFrame({'unique': unique, "most_common_value": most_common, 'frequency': frequency}, index=df.columns)
+        return df_prop
+
