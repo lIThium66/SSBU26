@@ -51,6 +51,16 @@ def server(input, output, session):
         else:
             conditional_ui.set(None)  # Clear the dynamic UI
 
+    #moje tlacidlo na priemer
+    @reactive.Effect
+    @reactive.event(input.calculate_avg)
+    def calculate_average():
+        calculation = input.calculate_avg()
+        measure = input.measurement_type() or "cholesterol"
+        data = patient_data_dict.get()
+        avg = pd.concat([df[measure] for df in data.values()]).mean()
+        txt_status.set(f"Priemer: {avg}")
+
     # OUTPUTS
 
     @output

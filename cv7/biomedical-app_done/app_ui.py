@@ -33,6 +33,7 @@ app_ui = ui.page_fluid(
             ui.input_action_button("generate_data", "Generate Data"),
             ui.input_radio_buttons("view_type", "Choose View",
                                    choices=list(data.views.values()), selected="Visualization"),
+            ui.input_action_button("calculate_avg", "Vypočítať priemer"),
             # Dynamic UI element
             ui.output_ui("dynamic_content"),
         ),
