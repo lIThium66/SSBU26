@@ -13,7 +13,14 @@ def load_sequence(filepath):
         - Otherwise, print a message and assign an empty sequence.
     - Return the sequence record.
     """
-
+    record = SeqIO.read(filepath, "genbank")
+    if record.id:
+        print(record.id)
+    elif record.seq:
+        print(record.seq)
+        return record.seq
+    else:
+        print(f"No sequence ID in {filepath}")
 # Task 2: Create complementary strand
 def create_complementary_strand(dna_sequence):
     """
@@ -23,6 +30,11 @@ def create_complementary_strand(dna_sequence):
     - Print the complementary strand.
     - Return the complementary strand.
     """
+    translations = str.maketrans("ATGC", "TACG")
+    complementary_strand = dna_sequence.translate(translations)
+    complementary= Seq(complementary_strand).reverse_complement()
+    print(complementary)
+    return complementary
 
 # Task 3: Create gene mutation
 def mutate(dna):
@@ -36,6 +48,14 @@ def mutate(dna):
     - Print the mutated DNA sequence.
     - Return the mutated DNA sequence.
     """
+    for i in range(1000):
+        index = randint(0, len(dna) - 1)
+        index2 = randint(0, len(dna) - 1)
+        dna.replace(dna[index], dna[index2])
+    list_dna = list(dna)
+    dna_str = "".join(list_dna)
+    print(dna_str)
+    return dna_str
 
 # Task 4: Calculate GC content
 def calculate_gc_content(dna_sequence):
@@ -46,6 +66,12 @@ def calculate_gc_content(dna_sequence):
     - Print the GC content percentage.
     - Return the GC content percentage.
     """
+    count_g = dna_sequence.count('G')
+    count_c = dna_sequence.count('C')
+    sum_gc = count_g + count_c
+    gc_perc = round((sum_gc/ len(dna_sequence)) * 100, 2)
+    print(gc_perc)
+    return gc_perc
 
 # Example usage
 if __name__ == "__main__":
